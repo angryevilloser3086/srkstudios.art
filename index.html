@@ -3,494 +3,383 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="SRK Studios - High-quality Open Source Flutter Packages." />
-    <title>SRK Studios | Open Source Flutter Packages</title>
+    <meta name="description" content="SRK Studios — Independent Flutter development studio. We design, build, and ship high-quality cross-platform apps for Android and iOS, and publish open source packages on pub.dev." />
+    <meta name="keywords" content="Flutter developer, freelance Flutter, Flutter app development, cross-platform apps, Dart, SRK Studios" />
+    <meta property="og:title" content="SRK Studios | Flutter App Development Studio" />
+    <meta property="og:description" content="We design, build, and ship high-quality Flutter apps for Android and iOS — from idea to app store." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://srkstudios.art" />
+    <title>SRK Studios | Flutter App Development Studio</title>
+    <link rel="icon" type="image/png" href="/logo.png" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #050511;
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --accent-glow: rgba(139, 92, 246, 0.4);
-            --accent-color: #8b5cf6;
-            --accent-secondary: #3b82f6;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Ambient Background */
-        .ambient-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
-            animation: float 20s infinite ease-in-out alternate;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: rgba(139, 92, 246, 0.3);
-            top: -10%;
-            left: -10%;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: rgba(59, 130, 246, 0.2);
-            bottom: -20%;
-            right: -10%;
-            animation-delay: -5s;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, 50px) scale(1.1); }
-            100% { transform: translate(-30px, 80px) scale(0.9); }
-        }
-
-        /* Header */
-        header {
-            padding: 24px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--card-border);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo-img {
-            height: 36px;
-            width: auto;
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-left: 32px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        nav a:hover {
-            color: var(--text-primary);
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-        }
-
-        /* Main Content */
-        main {
-            flex: 1;
-            padding: 140px 5% 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Hero */
-        .hero {
-            text-align: center;
-            max-width: 800px;
-            margin-bottom: 80px;
-            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            color: #d8b4fe;
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
-        .badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background-color: #d8b4fe;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #d8b4fe;
-        }
-
-        h1 {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -1.5px;
-            margin-bottom: 24px;
-        }
-
-        h1 .gradient-text {
-            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .sub-desc {
-            font-size: clamp(1.1rem, 3vw, 1.25rem);
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 40px;
-            font-weight: 300;
-            max-width: 600px;
-            margin-inline: auto;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 32px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
-            color: #fff;
-            box-shadow: 0 10px 20px -10px var(--accent-glow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px -10px var(--accent-glow);
-            filter: brightness(1.1);
-        }
-
-        .btn-secondary {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-2px);
-        }
-
-        /* Packages Section */
-        .packages {
-            width: 100%;
-            max-width: 1000px;
-            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 40px;
-        }
-
-        .packages h2 {
-            font-size: 2rem;
-            font-weight: 800;
-        }
-
-        .view-all {
-            color: var(--accent-secondary);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .view-all:hover {
-            text-decoration: underline;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 32px;
-            backdrop-filter: blur(10px);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(139, 92, 246, 0.3);
-            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            color: #a78bfa;
-        }
-
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
-
-        .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-        }
-
-        .card-link {
-            color: #a78bfa;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: var(--transition);
-        }
-
-        .card-link:hover {
-            color: #fff;
-            gap: 8px;
-        }
-
-        .stats {
-            display: flex;
-            gap: 12px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* Footer */
-        footer {
-            padding: 40px 5%;
-            text-align: center;
-            border-top: 1px solid var(--card-border);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 60px;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 16px;
-                padding: 16px;
-            }
-            nav {
-                display: flex;
-                gap: 16px;
-            }
-            nav a {
-                margin-left: 0;
-            }
-            main {
-                padding-top: 120px;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
-    <div class="ambient-bg">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-    </div>
-
     <header>
-        <div class="logo">
-            <img class="logo-img" src="logo.png" alt="SRK Studios Logo">
-            SRK<span style="font-weight:300;opacity:0.8;">Studios</span>
-        </div>
+        <a class="logo" href="/">
+            <img class="logo-img" src="/logo.png" alt="SRK Studios Logo">
+            SRK<span style="font-weight:500;color:var(--ink-faint);">Studios</span>
+        </a>
         <nav>
-            <a href="#packages">Packages</a>
-            <a href="https://github.com/angryevilloser3086" target="_blank">GitHub</a>
-            <a href="mailto:contact@srkstudios.art">Contact</a>
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+            <a href="#stack">Tech Stack</a>
+            <a href="/packages/">Open Source</a>
+            <a href="#about">About</a>
+            <a href="#faq">FAQ</a>
+            <a class="nav-cta" href="mailto:kornisivaramkrishna@gmail.com">Start a Project</a>
         </nav>
     </header>
 
-    <main>
-        <div class="hero">
-            <div class="badge">Publisher on pub.dev</div>
-            <h1>Empowering <span class="gradient-text">Flutter</span> developers globally.</h1>
+    <main id="top">
+        <!-- ===== HERO ===== -->
+        <div class="hero reveal visible">
+            <div class="badge badge--available">Available for new projects</div>
+            <h1>We build <span class="gradient-text">Flutter</span> apps that ship.</h1>
             <p class="sub-desc">
-                High-quality, production-ready open source packages. 
-                Built with precision, designed for seamless integration.
+                SRK Studios is an independent Flutter development studio. From first sketch to
+                app store release, we design and build fast, polished cross-platform apps for
+                Android and iOS — one codebase, two platforms, zero compromise.
             </p>
             <div class="cta-group">
-                <a href="https://pub.dev/publishers/srkstudios.art/packages" class="btn btn-primary" target="_blank">
-                    Explore Packages
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <a href="mailto:kornisivaramkrishna@gmail.com" class="btn btn-primary">
+                    Start a Project
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="https://github.com/angryevilloser3086" class="btn btn-secondary" target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    GitHub Profile
+                <a href="/packages/" class="btn btn-secondary">
+                    See Our Open Source
                 </a>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <div class="stat-value">1</div>
+                    <div class="stat-label">Codebase</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Platforms</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">150</div>
+                    <div class="stat-label">Pub Points</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Flutter &amp; Dart</div>
+                </div>
             </div>
         </div>
 
-        <div class="packages" id="packages">
-            <div class="section-header">
-                <h2>Our Open Source</h2>
-                <a href="https://pub.dev/publishers/srkstudios.art/packages" class="view-all" target="_blank">View all on pub.dev →</a>
+        <!-- ===== MARQUEE ===== -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>Flutter Apps <b>&#10022;</b></span>
+                <span>Android <b>&#10022;</b></span>
+                <span>iOS <b>&#10022;</b></span>
+                <span>MVP to Launch <b>&#10022;</b></span>
+                <span>Open Source <b>&#10022;</b></span>
+                <span>pub.dev Publisher <b>&#10022;</b></span>
+                <span>UI/UX <b>&#10022;</b></span>
+                <span>One Codebase <b>&#10022;</b></span>
+                <span>Flutter Apps <b>&#10022;</b></span>
+                <span>Android <b>&#10022;</b></span>
+                <span>iOS <b>&#10022;</b></span>
+                <span>MVP to Launch <b>&#10022;</b></span>
+                <span>Open Source <b>&#10022;</b></span>
+                <span>pub.dev Publisher <b>&#10022;</b></span>
+                <span>UI/UX <b>&#10022;</b></span>
+                <span>One Codebase <b>&#10022;</b></span>
             </div>
-            
+        </div>
+
+        <!-- ===== SERVICES ===== -->
+        <section id="services" class="reveal">
+            <div class="section-header">
+                <div class="section-eyebrow">What We Do</div>
+                <h2>Full-cycle Flutter development</h2>
+                <p>Whether you're starting from a napkin sketch or rescuing an existing codebase, we cover the entire journey of a mobile app.</p>
+            </div>
             <div class="grid">
-                <!-- Package 1 -->
                 <div class="card">
                     <div class="card-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
                     </div>
-                    <h3>dynamic_app_icon_changer</h3>
-                    <p>Change your Flutter app icon dynamically at runtime on both Android and iOS without restarting the app.</p>
-                    <div class="card-footer">
-                        <a href="https://pub.dev/packages/dynamic_app_icon_changer" class="card-link" target="_blank">
-                            View Package
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                        </a>
-                        <div class="stats">
-                            <div class="stat">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                                100%
-                            </div>
+                    <h3>App Development</h3>
+                    <p>End-to-end Flutter apps for Android and iOS — architecture, state management, offline support, and a UI that feels native on both platforms.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    </div>
+                    <h3>MVP for Startups</h3>
+                    <p>Have an idea to validate? We scope a lean first version, build it fast without cutting corners on quality, and get it into real users' hands.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <h3>UI/UX Implementation</h3>
+                    <p>Pixel-perfect builds from your Figma or design files — smooth animations, responsive layouts, dark mode, and accessibility done right.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <h3>Plugin &amp; Native Integration</h3>
+                    <p>Custom Flutter plugins with platform channels — Kotlin on Android, Swift on iOS. We publish our own on pub.dev, so we know what production-grade means.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    </div>
+                    <h3>Maintenance &amp; Upgrades</h3>
+                    <p>Flutter version migrations, dependency upgrades, performance tuning, and refactoring legacy codebases so they stay fast and shippable.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    </div>
+                    <h3>Release &amp; Store Deployment</h3>
+                    <p>Signing, store listings, review guidelines, staged rollouts, and CI/CD pipelines — we take your app all the way to the Play Store and App Store.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROCESS ===== -->
+        <section id="process" class="reveal">
+            <div class="section-header">
+                <div class="section-eyebrow">How We Work</div>
+                <h2>A process without surprises</h2>
+                <p>Clear milestones, working builds you can install from week one, and direct communication with the developer actually writing your code.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div>
+                        <h3>Discovery</h3>
+                        <p>We start with a conversation about your idea, users, and budget. You get an honest assessment of scope, a proposed milestone plan, and a fixed quote — no vague estimates.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div>
+                        <h3>Design &amp; Prototype</h3>
+                        <p>Wireframes and clickable prototypes before any heavy build-out. We agree on what the app looks and feels like early, when changes are cheap.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div>
+                        <h3>Build &amp; Iterate</h3>
+                        <p>Development in short cycles with an installable build at every milestone. You watch the app grow on your own phone and steer priorities as we go.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div>
+                        <h3>Launch &amp; Support</h3>
+                        <p>Store submission, release monitoring, and a handover with clean documentation. Optional maintenance keeps your app healthy after launch.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TECH STACK ===== -->
+        <section id="stack" class="reveal">
+            <div class="section-header">
+                <div class="section-eyebrow">Tech Stack</div>
+                <h2>Tools we build with</h2>
+                <p>A pragmatic, battle-tested stack — chosen for reliability, not hype.</p>
+            </div>
+            <div class="stack-tags">
+                <span class="tag">Flutter</span>
+                <span class="tag">Dart</span>
+                <span class="tag">Kotlin</span>
+                <span class="tag">Swift</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">REST &amp; GraphQL</span>
+                <span class="tag">Riverpod / Bloc</span>
+                <span class="tag">SQLite / Drift</span>
+                <span class="tag">Platform Channels</span>
+                <span class="tag">GitHub Actions</span>
+                <span class="tag">Codemagic</span>
+                <span class="tag">Play Store &amp; App Store</span>
+            </div>
+        </section>
+
+        <!-- ===== OPEN SOURCE ===== -->
+        <section id="open-source" class="reveal">
+            <div class="section-header">
+                <div class="section-eyebrow">Open Source</div>
+                <h2>We publish what we build</h2>
+                <p>SRK Studios is a verified publisher on pub.dev. Our packages are the same production-grade tools we use in client work.</p>
+            </div>
+            <div class="os-card">
+                <div class="package-title-row">
+                    <div class="package-title mono">dynamic_app_icon_changer</div>
+                    <span class="pill purple">v0.0.3</span>
+                    <span class="pill green">MIT</span>
+                </div>
+                <p style="color:var(--ink-soft); line-height:1.75; margin:14px 0 26px; font-size:0.95rem;">
+                    Change your Flutter app's launcher icon at runtime on Android and iOS — with
+                    scheduled changes, state recovery after reboots and updates, and safeguards for
+                    third-party SDKs. 150 pub points and counting.
+                </p>
+                <div class="package-links">
+                    <a href="/packages/" class="btn btn-primary">
+                        Package Details
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="https://pub.dev/packages/dynamic_app_icon_changer" class="btn btn-secondary" target="_blank" rel="noopener">View on pub.dev</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT ===== -->
+        <section id="about" class="reveal">
+            <div class="section-header">
+                <div class="section-eyebrow">About</div>
+                <h2>The studio behind the code</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        SRK Studios is the independent studio of a <b>freelance Flutter developer</b> —
+                        which means when you hire us, the person you talk to is the person who writes
+                        your code. No account managers, no hand-offs, no telephone game.
+                    </p>
+                    <p>
+                        We hold client work to the same bar as our open source: an app isn't finished
+                        when the demo works — it's finished when it survives device reboots, OS
+                        updates, flaky networks, and real users. That mindset is why we're a
+                        <b>verified publisher on pub.dev</b> under
+                        <span class="mono" style="color:var(--accent);">srkstudios.art</span>.
+                    </p>
+                    <p>
+                        Based in India, working with clients worldwide. Remote-first, async-friendly,
+                        and responsive across time zones.
+                    </p>
+                </div>
+                <div class="about-values">
+                    <div class="value-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <div>
+                            <b>Direct communication</b>
+                            <p>You work with the developer, not a middleman. Questions get answered by the person building your app.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <div>
+                            <b>Production mindset</b>
+                            <p>Edge cases, error states, and offline behavior are part of the plan — not an afterthought.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <div>
+                            <b>You own everything</b>
+                            <p>Full source code, accounts, and documentation are yours from day one. No lock-in, ever.</p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <div>
+                            <b>Proof in public</b>
+                            <p>Our open source packages on pub.dev show exactly how we write code — before you spend a rupee.</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Add more packages here in the future if needed -->
             </div>
-        </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section id="faq" class="reveal">
+            <div class="section-header">
+                <div class="section-eyebrow">FAQ</div>
+                <h2>Working with us</h2>
+            </div>
+            <div class="faq-list">
+                <details>
+                    <summary>What kind of projects do you take on?</summary>
+                    <p>New Flutter apps from scratch, MVPs for startups, feature development in existing Flutter codebases, custom plugin development, and rescue/refactoring work on apps that have grown messy. If it's Flutter, we're interested.</p>
+                </details>
+                <details>
+                    <summary>How do we start a project?</summary>
+                    <p>Email us at <code>kornisivaramkrishna@gmail.com</code> with a short description of your idea or problem. We'll reply with follow-up questions, then set up a call. After discovery you get a written proposal with scope, milestones, timeline, and price.</p>
+                </details>
+                <details>
+                    <summary>How do you charge?</summary>
+                    <p>Fixed price per milestone for well-defined scopes, or a weekly/hourly rate for ongoing and exploratory work. Either way, the terms are agreed in writing before any work starts — no surprise invoices.</p>
+                </details>
+                <details>
+                    <summary>Who owns the code and accounts?</summary>
+                    <p>You do — completely. The repository, the store listings, the backend accounts, everything is created under your ownership or handed over at delivery, with documentation to onboard any future developer.</p>
+                </details>
+                <details>
+                    <summary>Do you provide support after launch?</summary>
+                    <p>Yes. We offer ongoing maintenance: dependency and Flutter version upgrades, OS compatibility fixes, monitoring, and small feature iterations. Support terms are flexible — from on-demand to monthly retainers.</p>
+                </details>
+                <details>
+                    <summary>Can you join an existing team or codebase?</summary>
+                    <p>Absolutely. We regularly work alongside in-house teams and other freelancers — code reviews, pairing, and following your existing conventions and CI are all part of the service.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- ===== CTA ===== -->
+        <section id="contact" class="reveal">
+            <div class="cta-banner">
+                <h2>Have an app idea? <span class="gradient-text">Let's build it.</span></h2>
+                <p>Tell us what you want to make. You'll get an honest reply from the developer who'd build it — usually within a day.</p>
+                <div class="cta-group">
+                    <a href="mailto:kornisivaramkrishna@gmail.com" class="btn btn-primary">Start a Project</a>
+                    <a href="https://github.com/srkstudios" class="btn btn-secondary" target="_blank" rel="noopener">See Our GitHub</a>
+                </div>
+                <a class="cta-email" href="mailto:kornisivaramkrishna@gmail.com">kornisivaramkrishna@gmail.com</a>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 SRK Studios &mdash; Verified Publisher on pub.dev</p>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a class="logo" href="/">
+                    <img class="logo-img" src="/logo.png" alt="SRK Studios Logo">
+                    SRK<span style="font-weight:500;color:var(--ink-faint);">Studios</span>
+                </a>
+                <p>Independent Flutter development studio. We design, build, and ship cross-platform apps — and publish open source on pub.dev.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Studio</h4>
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Open Source</h4>
+                <a href="/packages/">dynamic_app_icon_changer</a>
+                <a href="https://pub.dev/publishers/srkstudios.art/packages" target="_blank" rel="noopener">All packages on pub.dev</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="https://github.com/srkstudios" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://pub.dev/publishers/srkstudios.art/packages" target="_blank" rel="noopener">pub.dev</a>
+                <a href="mailto:kornisivaramkrishna@gmail.com">kornisivaramkrishna@gmail.com</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 SRK Studios &mdash; Verified Publisher on pub.dev</span>
+            <span>Built with one codebase. Shipped to two platforms.</span>
+        </div>
     </footer>
 
-    <script>
-        // Micro-animations for interacting with the page
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <script src="/script.js"></script>
 </body>
 </html>
